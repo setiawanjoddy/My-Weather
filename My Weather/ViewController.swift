@@ -8,7 +8,13 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var weatherImage: UIImageView!
+    @IBOutlet weak var weatherLabel: UILabel!
+    @IBOutlet weak var weatherLocation: UILabel!
+    @IBOutlet weak var weatherConditionLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
