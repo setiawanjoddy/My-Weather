@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--My Weather View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="My_Weather" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MyWeatherViewController" customModule="My_Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -39,7 +39,7 @@
                                 <rect key="frame" x="63" y="46" width="286" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="go"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Clear" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E9H-LB-D6V">
                                 <rect key="frame" x="20" y="454" width="374" height="30"/>
@@ -54,6 +54,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" backgroundImage="magnifyingglass" catalog="system"/>
+                                <connections>
+                                    <action selector="searchButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ukR-Pe-92C"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ca4-ZI-QF2">
                                 <rect key="frame" x="20" y="46.5" width="36" height="32"/>
@@ -61,16 +64,20 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" backgroundImage="location.circle" catalog="system"/>
+                                <connections>
+                                    <action selector="locateButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SjD-Xf-0Zm"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="weatherConditionLabel" destination="E9H-LB-D6V" id="xGW-ik-K0q"/>
-                        <outlet property="weatherImage" destination="A6r-EQ-1Vl" id="Pmn-j9-JRB"/>
-                        <outlet property="weatherLabel" destination="dCB-zf-qbv" id="XFe-pG-Qk6"/>
-                        <outlet property="weatherLocation" destination="a6n-CD-5wg" id="nEs-Ru-Axy"/>
+                        <outlet property="citySearchTextField" destination="N7g-aL-XG5" id="7sG-Um-MGw"/>
+                        <outlet property="weatherConditionLabel" destination="E9H-LB-D6V" id="gVO-UG-Qqk"/>
+                        <outlet property="weatherImage" destination="A6r-EQ-1Vl" id="5h5-yZ-OQK"/>
+                        <outlet property="weatherLocation" destination="a6n-CD-5wg" id="6Sy-iF-Wba"/>
+                        <outlet property="weatherTemperatureLabel" destination="dCB-zf-qbv" id="Xb6-ee-hzQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
