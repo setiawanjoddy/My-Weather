@@ -6,9 +6,9 @@
 //
 
 import UIKit
+import CoreLocation
 
 class MyWeatherViewController: UIViewController {
-    
     
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var weatherTemperatureLabel: UILabel!
@@ -17,23 +17,28 @@ class MyWeatherViewController: UIViewController {
     @IBOutlet weak var citySearchTextField: UITextField!
     
     var weatherManager = WeatherManager()
+    var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
         
         weatherManager.delegate = self
         citySearchTextField.delegate = self
         //print("Hello World")
     }
-
+    
     @IBAction func searchButtonPressed(_ sender: UIButton) {
         citySearchTextField.endEditing(true)
         //print("search button is OK")
     }
     
     @IBAction func locateButtonPressed(_ sender: UIButton) {
-        print("locate button is OK")
+        locationManager.requestLocation()
+        //print("locate button is OK")
     }
 }
 
@@ -75,6 +80,22 @@ extension MyWeatherViewController: WeatherManagerDelegate {
     }
     
     func didFailWithError(error: Error) {
+        print(error)
+    }
+    
+}
+
+extension MyWeatherViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            locationManager.stopUpdatingLocation()
+            let lat = location.coordinate.latitude
+            let lon = location.coordinate.longitude
+            weatherManager.fetchWeather(latitude: lat, longitude: lon)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
     }
     
