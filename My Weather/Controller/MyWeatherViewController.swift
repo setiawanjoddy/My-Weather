@@ -16,16 +16,19 @@ class MyWeatherViewController: UIViewController {
     @IBOutlet weak var weatherConditionLabel: UILabel!
     @IBOutlet weak var citySearchTextField: UITextField!
     
+    var weatherManager = WeatherManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
         citySearchTextField.delegate = self
-        print("Hello World")
+        //print("Hello World")
     }
 
     @IBAction func searchButtonPressed(_ sender: UIButton) {
         citySearchTextField.endEditing(true)
-        print("search button is OK")
+        //print("search button is OK")
     }
     
     @IBAction func locateButtonPressed(_ sender: UIButton) {
@@ -52,6 +55,10 @@ extension MyWeatherViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        if let city = citySearchTextField.text {
+            weatherManager.fetchWeather(cityName: city)
+        }
+        
         citySearchTextField.text = ""
     }
 }
