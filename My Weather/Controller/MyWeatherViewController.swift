@@ -62,3 +62,18 @@ extension MyWeatherViewController: UITextFieldDelegate {
         citySearchTextField.text = ""
     }
 }
+
+extension MyWeatherViewController: WeatherManagerDelegate {
+    func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
+        DispatchQueue.main.async {
+            self.weatherTemperatureLabel.text = weather.temperatureString
+            self.weatherImage.image = UIImage(systemName: weather.conditionName)
+            self.weatherLocation.text = weather.cityName
+        }
+    }
+    
+    func didFailWithError(error: Error) {
+        print(error)
+    }
+    
+}
