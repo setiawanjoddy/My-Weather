@@ -22,6 +22,7 @@ class MyWeatherViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        weatherManager.delegate = self
         citySearchTextField.delegate = self
         //print("Hello World")
     }
@@ -69,6 +70,7 @@ extension MyWeatherViewController: WeatherManagerDelegate {
             self.weatherTemperatureLabel.text = weather.temperatureString
             self.weatherImage.image = UIImage(systemName: weather.conditionName)
             self.weatherLocation.text = weather.cityName
+            self.weatherConditionLabel.text = weather.condition
         }
     }
     
